@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-field',
@@ -8,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrl: './input-field.component.css'
 })
 export class InputFieldComponent {
+  cityName: string = '';
 
+  @Output() cityAdded = new EventEmitter<string>();
+
+  addCity() {
+    if (this.cityName.trim()) {
+      this.cityAdded.emit(this.cityName.trim());
+      this.cityName = '';
+    }
+  }
 }
