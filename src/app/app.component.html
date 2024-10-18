@@ -1,4 +1,7 @@
 <main>
-    <app-input-field></app-input-field>
+    <app-input-field (cityAdded)="onCityAdded($event)"></app-input-field>
+    <hr>
+    <div>Loading...</div>
+    <div >{{ error }}</div>
     <app-city-card></app-city-card>
 </main>

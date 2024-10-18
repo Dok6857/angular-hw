@@ -1,1 +1,6 @@
-<p>city-card works!</p>
+<div>
+    <h2>{{ city.name }}</h2>
+    <p>Temperature: {{ city.temperature }}</p>
+    <p>Condition: {{ city.condition }}</p>
+    <button (click)="removeCity()">Remove</button>
+</div>
