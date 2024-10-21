@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { WeatherService } from './weather.service';
-import { HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('WeatherService', () => {
   let service: WeatherService;
@@ -8,8 +8,10 @@ describe('WeatherService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpTestingController],
-      providers: [WeatherService],
+      providers: [
+        WeatherService,
+        provideHttpClientTesting()
+      ],
     });
     service = TestBed.inject(WeatherService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -28,7 +30,7 @@ describe('WeatherService', () => {
     });
 
     const req = httpMock.expectOne(
-      `${service['API_URL']}?q=Kyiv&units=metric&appid=${service['API_KEY']}`
+      `${service['API_URL']}?q=Sumy&units=metric&appid=${service['API_KEY']}`
     );
     expect(req.request.method).toBe('GET');
     req.flush(testWeather);
