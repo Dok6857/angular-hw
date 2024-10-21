@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { CityCardComponent } from './city-card/city-card.component';
 import { WeatherService } from './weather.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, InputFieldComponent, CityCardComponent],
+  imports: [RouterOutlet, InputFieldComponent, CityCardComponent, NgFor],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

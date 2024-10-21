@@ -16,7 +16,6 @@ export class InputFieldComponent {
   onAddCity() {
     if (this.cityName.trim()) {
       this.cityAdded.emit(this.cityName.trim());
-      console.log(this.cityName);
       this.cityName = '';
     }
   }

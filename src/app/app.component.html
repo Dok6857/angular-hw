@@ -7,11 +7,11 @@
   <div class="error">{{ errorMessage }}</div>
   }
   
-  <div class="city-list">
+  <ul class="city-list">
     <app-city-card 
     *ngFor="let city of cities" 
     [city]="city" 
     (cityRemoved)="removeCity($event)">
   </app-city-card>
-  </div>
+</ul>
 </main>
