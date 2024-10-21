@@ -1,0 +1,29 @@
+.input-container {
+    display: inline-flex;
+    gap: 5px;
+}
+
+.input-container > button {
+    transition: background-color 250ms ease-in-out;
+}
+
+.input-container > button:hover,
+.input-container > button:focus {
+    background-color: rgb(157, 235, 209);
+}
+
+.input-container > input {
+    background-color: rgba(218, 218, 218, 0.795);
+    transition: background-color 250ms ease-in-out;
+}
+
+.input-container > input:hover,
+.input-container > input:focus {
+    background-color: rgba(173, 173, 173, 0.795)
+}
+
+.input-container > button,
+.input-container > input {
+    border-radius: 4px;
+    border: none;
+}

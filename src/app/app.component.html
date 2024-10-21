@@ -1,17 +1,21 @@
 <main>
-  <app-input-field (cityAdded)="addCity($event)"></app-input-field>
+  <div class="upper-container">
+    <app-input-field (cityAdded)="addCity($event)"></app-input-field>
+    @if (loading) {
+    <div class="loading">Loading...</div>
+    }
+  </div>
   <hr />
-  @if (loading) {
-  <div>Loading...</div>
-  } @if (errorMessage) {
+  @if (errorMessage) {
   <div class="error">{{ errorMessage }}</div>
   }
-  
+
   <ul class="city-list">
-    <app-city-card 
-    *ngFor="let city of cities" 
-    [city]="city" 
-    (cityRemoved)="removeCity($event)">
-  </app-city-card>
-</ul>
+    <app-city-card
+      *ngFor="let city of cities"
+      [city]="city"
+      (cityRemoved)="removeCity($event)"
+    >
+    </app-city-card>
+  </ul>
 </main>
