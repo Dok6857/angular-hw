@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, throwError, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -7,21 +7,26 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class WeatherService {
-  private apiKey = environment.apiKey;
-  private apiUrl = environment.apiUrl;
+  private API_KEY = environment.apiKey;
+  private API_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getWeather(city: string): Observable<any> {
-    return this.http
-      .get(`${this.apiUrl}?q=${city}&units=metric&appid=${this.apiKey}`)
-      .pipe(
-        map((data: any) => ({
-          cityName: data.name,
-          temperature: data.main.temp,
-          condition: data.weather[0].main,
-        })),
-        catchError((err) => throwError(() => new Error('City not found')))
-      );
+    const url = `${this.API_URL}?q=${city}&units=metric&appid=${this.API_KEY}`;
+    return this.http.get(url).pipe(
+      map((data: any) => ({
+        city: data.name,
+        temperature: data.main.temp,
+        condition: data.weather[0].main,
+      })),
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    return throwError(
+      () => new Error('Місто не знайдено або сталася помилка.')
+    );
   }
 }

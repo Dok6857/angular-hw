@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './input-field.component.html',
   styleUrl: './input-field.component.css'
 })
@@ -12,7 +13,7 @@ export class InputFieldComponent {
 
   @Output() cityAdded = new EventEmitter<string>();
 
-  addCity() {
+  onAddCity() {
     if (this.cityName.trim()) {
       this.cityAdded.emit(this.cityName.trim());
       console.log(this.cityName);

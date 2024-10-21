@@ -9,9 +9,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CityCardComponent {
   @Input() city: any;
-  @Output() cityRemoved = new EventEmitter<void>();
+  @Output() cityRemoved = new EventEmitter<string>();
 
-  removeCity() {
-    this.cityRemoved.emit();
+  onRemove() {
+    this.cityRemoved.emit(this.city.city);
   }
 }

@@ -16,27 +16,27 @@ export class AppComponent {
 
   cities: any[] = [];
   loading: boolean = false;
-  error: string | null = null;
+  errorMessage: string = '';
 
   constructor(private weatherService: WeatherService) {}
 
-  onCityAdded(cityName: string) {
+  addCity(cityName: string) {
     this.loading = true;
-    this.error = null;
+    this.errorMessage = '';
 
     this.weatherService.getWeather(cityName).subscribe({
-      next: (city) => {
-        this.cities.push(city);
+      next: (data) => {
+        this.cities.push(data);
         this.loading = false;
       },
       error: (err) => {
-        this.error = err.message;
+        this.errorMessage = err.message;
         this.loading = false;
       },
     });
   }
-  
-  onCityRemoved(i: number) {
-    this.cities.splice(i, 1);
+
+  removeCity(cityName: string) {
+    this.cities = this.cities.filter(city => city.city !== cityName);
   }
 }

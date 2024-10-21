@@ -1,4 +1,4 @@
 <form class="input-container">
-    <input type="text" [value]="cityName" placeholder="Enter city name">
-    <button type="button" (click)="addCity()">Add city</button>
+    <input type="text" [(ngModel)]="cityName" name="inputCity" placeholder="Enter city name">
+    <button (click)="onAddCity()">Add city</button>
 </form>

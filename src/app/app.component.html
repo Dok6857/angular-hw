@@ -1,7 +1,17 @@
 <main>
-    <app-input-field (cityAdded)="onCityAdded($event)"></app-input-field>
-    <hr>
-    <div>Loading...</div>
-    <div >{{ error }}</div>
-    <app-city-card></app-city-card>
+  <app-input-field (cityAdded)="addCity($event)"></app-input-field>
+  <hr />
+  @if (loading) {
+  <div>Loading...</div>
+  } @if (errorMessage) {
+  <div class="error">{{ errorMessage }}</div>
+  }
+  
+  <div class="city-list">
+    <app-city-card 
+    *ngFor="let city of cities" 
+    [city]="city" 
+    (cityRemoved)="removeCity($event)">
+  </app-city-card>
+  </div>
 </main>
